@@ -71,7 +71,7 @@ Window {
         }
 
         onRunningtime: {
-            lblRunTime1.text = "Total Run-Time: " + machineOne.runtime + " s"
+            lblRunTime1.text = "Total Run-Time: " + (Math.round(machineOne.runtime * 100) / 100) + " s"
         }
 
     }
