@@ -19,7 +19,7 @@ Window {
     title: qsTr("Hello World")
 
     Component.onCompleted: {
-        progressBar.value = machineOne.workload
+        progressBar.value = 0
         startBtn.enabled = true
         stopBtn.enabled = false
         pauseBtn.enabled = false
@@ -31,6 +31,48 @@ Window {
     MachineOne {
         id: machineOne
 
+        // Receive SIGNALS from machineone.h, then camelCase
+        onStarted: {
+            startBtn.enabled = false
+            stopBtn.enabled = true
+            pauseBtn.enabled = true
+            resumeBtn.enabled = false
+            lblStatus1.text = "Started..."
+        }
+
+        onStopped: {
+            startBtn.enabled = true
+            stopBtn.enabled = false
+            pauseBtn.enabled = false
+            resumeBtn.enabled = false
+            lblStatus1.text = "Stopped!"
+            progressbar.value = 0.0
+        }
+
+        onPaused: {
+            startBtn.enabled = false
+            stopBtn.enabled = true
+            pauseBtn.enabled = false
+            resumeBtn.enabled = true
+            lblStatus1.text = "Paused..."
+        }
+
+        onResumed: {
+            startBtn.enabled = false
+            stopBtn.enabled = true
+            pauseBtn.enabled = true
+            resumeBtn.enabled = false
+            lblStatus1.text = "Resumed"
+        }
+
+        onProgress: {
+            lblStatus1.text = "Progress: " + machineOne.workload + "%"
+            progressBar.value = (machineOne.workload * 0.01)
+        }
+
+        onRunningtime: {
+            lblRunTime1.text = "Total Run-Time: " + machineOne.runtime + " s"
+        }
 
     }
 
@@ -58,7 +100,18 @@ Window {
             Label {
                 id: lblStatus1
                 text: qsTr("Status")
+                anchors.right: parent.right
+                anchors.rightMargin: 350
                 font.pointSize: 16
+            }
+
+            Label {
+                id: lblRunTime1
+                color: "#000000"
+                text: qsTr("Run-Time")
+                font.pointSize: 16
+                anchors.right: parent.right
+                anchors.rightMargin: 50
             }
         }
 
@@ -92,6 +145,7 @@ Window {
                 height: 60
                 text: qsTr("Start")
                 anchors.verticalCenter: parent.verticalCenter
+                onClicked: machineOne.start();
             }
 
             Button {
@@ -100,6 +154,7 @@ Window {
                 height: 60
                 text: qsTr("Stop")
                 anchors.verticalCenter: parent.verticalCenter
+                onClicked: machineOne.stop();
             }
 
             Button {
@@ -108,6 +163,7 @@ Window {
                 height: 60
                 text: qsTr("Pause")
                 anchors.verticalCenter: parent.verticalCenter
+                onClicked: machineOne.pause();
             }
 
             Button {
@@ -116,6 +172,7 @@ Window {
                 height: 60
                 text: qsTr("Resume")
                 anchors.verticalCenter: parent.verticalCenter
+                onClicked: machineOne.resume();
             }
         }
 
