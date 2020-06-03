@@ -260,7 +260,7 @@ Window {
                 text: qsTr("Resume")
                 onClicked: {}  // TODO
             }
-        }
+        }  // Row (id: row2c)
 
     }  // Column (id: column2)
 

@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         machineone.cpp \
+        machinetwo.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    machineone.h
+    machineone.h \
+    machinetwo.h
