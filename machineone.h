@@ -24,8 +24,7 @@ public:
     double runtime();
     void setRuntime(QVariant data);
 
-    // Modify Timer Interval here (Time it takes to complete 1% of progressbar)
-    double const m_timerInterval = 500.0;
+
 
 signals:
     // Q_PROPERTY SIGNALS
@@ -50,6 +49,9 @@ private:
     QTimer m_timer;
     int m_value;
     double m_runtime;
+
+    // Modify Timer Interval here (Time it takes to complete 1% of progressbar)
+    double const m_timerInterval = 500.0;
 
 };
 

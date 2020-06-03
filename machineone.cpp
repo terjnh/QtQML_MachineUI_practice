@@ -8,26 +8,26 @@ MachineOne::MachineOne(QObject *parent) : QObject(parent)
 
 int MachineOne::value()
 {
-    qInfo() << "Returning value: " << m_value;
+    qInfo() << "Returning value (M1): " << m_value;
     return m_value;
 }
 
 void MachineOne::setValue(QVariant data)
 {
-    qInfo() << "Setting value";
+    qInfo() << "Setting value (M1)";
     m_value = data.toInt();
     emit progress();
 }
 
 double MachineOne::runtime()
 {
-    qInfo() << "Returning Runtime Value: " << m_runtime;
+    qInfo() << "Returning Runtime Value (M1): " << m_runtime;
     return m_runtime;
 }
 
 void MachineOne::setRuntime(QVariant data)
 {
-    qInfo() << "Setting Runtime Value";
+    qInfo() << "Setting Runtime Value (M1)";
     m_runtime = data.toDouble();
     emit runningtime();
 }

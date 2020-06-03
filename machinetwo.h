@@ -9,8 +9,21 @@
 class MachineTwo : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(int workload2 READ value WRITE setValue NOTIFY progress2)
+    Q_PROPERTY(double runtime2 READ runtime WRITE setRuntime NOTIFY runningtime2)
+
 public:
     explicit MachineTwo(QObject *parent = nullptr);
+
+    // Getter and Setter : m_value
+    int value();
+    void setValue(QVariant data);
+
+    // Getter and Setter : m_runtime
+    double runtime();
+    void setRuntime(QVariant data);
+
 
 signals:
     // Q_PROPERTY SIGNALS
@@ -35,6 +48,8 @@ private:
     QTimer m_timer;
     int m_value;
     double m_runtime;
+
+    double const m_timerInterval = 500.0;
 
 };
 
