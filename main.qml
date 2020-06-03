@@ -28,6 +28,108 @@ Window {
         console.log("Progress: " + progressBar.value)
     }
 
+    Column {
+        id: column1
+        width: 590
+        height: 150
+        spacing: 0
+        anchors.top: parent.top
+        anchors.topMargin: 80
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Row {
+            id: row1a
+            width: column1.width
+            height: 30
+            spacing: 50
+
+            Label {
+                id: lblMachine1
+                text: qsTr("Machine 1")
+                font.bold: true
+            }
+
+            Label {
+                id: lblStatus1
+                text: qsTr("Status")
+                anchors.right: parent.right
+                anchors.rightMargin: 350
+                font.pointSize: 16
+            }
+
+            Label {
+                id: lblRunTime1
+                color: "#000000"
+                text: qsTr("Run-Time")
+                font.pointSize: 16
+                anchors.right: parent.right
+                anchors.rightMargin: 50
+            }
+        }  // Row (id: row1a)
+
+        Row {
+            id: row1b
+            width: column1.width
+            height: 40
+            anchors.verticalCenter: parent.verticalCenter
+
+            ProgBar { id: progressBar }
+
+//            ProgressBar {
+//                id: progressBar
+//                width: 540
+//                height: parent.height
+//                anchors.bottom: parent.bottom
+//                anchors.bottomMargin: 20
+//                value: 0.5
+//            }
+        }  // Row (id: row1b)
+
+        Row {
+            id: row1c
+            width: column1.width
+            height: column1.height - (row1a.height + row1b.height)
+            spacing: 20
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 0
+
+            CustomBtn1 {
+                id: startBtn
+                icon.source: "qrc:/images/images/start.png"
+                text: qsTr("Start")
+                onClicked: machineOne.start();
+            }
+
+            CustomBtn1 {
+                id: stopBtn
+                icon.width: 30; icon.height: 30
+                icon.source: "qrc:/images/images/stop.png"
+                text: qsTr("  Stop")
+                onClicked: machineOne.stop();
+            }
+
+            CustomBtn1 {
+                id: pauseBtn
+                icon.width: 45; icon.height: 45
+                icon.source: "qrc:/images/images/pause.jpg"
+                text: qsTr("Pause")
+                onClicked: machineOne.pause();
+
+                background: Rectangle{
+                    color: '#f6f6f6'
+                }
+            }
+
+            CustomBtn1 {
+                id: resumeBtn
+                icon.source: ""
+                text: qsTr("Resume")
+                onClicked: machineOne.resume();
+            }
+        }  // Row (id: row1c)
+
+    }  // Column (id: column1)
+
     MachineOne {
         id: machineOne
 
@@ -73,32 +175,33 @@ Window {
         onRunningtime: {
             lblRunTime1.text = "Total Run-Time: " + (Math.round(machineOne.runtime * 100) / 100) + " s"
         }
-
     }
 
+
+
     Column {
-        id: column1
+        id: column2
+        x: 57
         width: 590
         height: 150
-        spacing: 0
         anchors.top: parent.top
-        anchors.topMargin: 80
+        anchors.topMargin: 290
         anchors.horizontalCenter: parent.horizontalCenter
 
         Row {
-            id: row1a
-            width: column1.width
+            id: row2a
+            width: column2.width
             height: 30
             spacing: 50
 
             Label {
-                id: lblMachine1
-                text: qsTr("Machine 1")
+                id: lblMachine2
+                text: qsTr("Machine 2")
                 font.bold: true
             }
 
             Label {
-                id: lblStatus1
+                id: lblStatus2
                 text: qsTr("Status")
                 anchors.right: parent.right
                 anchors.rightMargin: 350
@@ -106,73 +209,25 @@ Window {
             }
 
             Label {
-                id: lblRunTime1
+                id: lblRunTime2
                 color: "#000000"
                 text: qsTr("Run-Time")
                 font.pointSize: 16
                 anchors.right: parent.right
                 anchors.rightMargin: 50
             }
-        }
+        }  // Row (id: row2a)
 
         Row {
-            id: row1b
-            width: column1.width
+            id: row2b
+            width: column2.width
             height: 40
             anchors.verticalCenter: parent.verticalCenter
 
-            ProgressBar {
-                id: progressBar
-                width: 540
-                height: parent.height
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 20
-                value: 0.5
-            }
-        }
+            ProgBar { id: progressBar2 }
+        }  // Row (id: row2b)
 
-        Row {
-            id: row1c
-            width: column1.width
-            height: column1.height - (row1a.height + row1b.height)
-            spacing: 20
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 0
+    }  // Column (id: column2)
 
-            CustomBtn1 {
-                id: startBtn
-                icon.source: "qrc:/images/images/start.png"
-                text: qsTr("Start")
-                onClicked: machineOne.start();
-            }
-
-            CustomBtn1 {
-                id: stopBtn
-                icon.width: 30; icon.height: 30
-                icon.source: "qrc:/images/images/stop.png"
-                text: qsTr("  Stop")
-                onClicked: machineOne.stop();
-            }
-
-            CustomBtn1 {
-                id: pauseBtn
-                icon.width: 45; icon.height: 45
-                icon.source: "qrc:/images/images/pause.jpg"
-                text: qsTr("Pause")
-                onClicked: machineOne.pause();
-
-                background: Rectangle{
-                    color: '#f6f6f6'
-                }
-            }
-
-            CustomBtn1 {
-                id: resumeBtn
-                icon.source: ""
-                text: qsTr("Resume")
-                onClicked: machineOne.resume();
-            }
-        }
-
-    }
 }
+

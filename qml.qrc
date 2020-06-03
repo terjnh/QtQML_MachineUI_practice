@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>CustomBtn1.qml</file>
+        <file>ProgBar.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/start.png</file>
