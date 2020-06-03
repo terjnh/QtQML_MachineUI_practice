@@ -14,7 +14,7 @@ Window {
     id: window
     visible: true
     width: 640
-    height: 480
+    height: 520
     color: "#d9d5d5"
     title: qsTr("Machine Template")
 
@@ -218,6 +218,49 @@ Window {
 
             ProgBar { id: progressBar2 }
         }  // Row (id: row2b)
+
+        Row {
+            id: row2c
+            width: column2.width
+            height: column2.height - (row2a.height + row2b.height)
+            spacing: 20
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin:0
+
+            CustomBtn1 {
+                id: startBtn2
+                icon.source: "qrc:/images/images/start.png"
+                text: qsTr("Start")
+                onClicked: {} // TODO
+            }
+
+            CustomBtn1 {
+                id: stopBtn2
+                icon.width: 30; icon.height: 30
+                icon.source: "qrc:/images/images/stop.png"
+                text: qsTr("  Stop")
+                onClicked: {} // TODO
+            }
+
+            CustomBtn1 {
+                id: pauseBtn2
+                icon.width: 45; icon.height: 45
+                icon.source: "qrc:/images/images/pause.jpg"
+                text: qsTr("Pause")
+                onClicked: {}  // TODO
+
+                background: Rectangle{
+                    color: '#f6f6f6'
+                }
+            }
+
+            CustomBtn1 {
+                id: resumeBtn2
+                icon.source: ""
+                text: qsTr("Resume")
+                onClicked: {}  // TODO
+            }
+        }
 
     }  // Column (id: column2)
 
