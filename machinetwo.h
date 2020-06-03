@@ -12,6 +12,7 @@ class MachineTwo : public QObject
 
     Q_PROPERTY(int workload2 READ value WRITE setValue NOTIFY progress2)
     Q_PROPERTY(double runtime2 READ runtime WRITE setRuntime NOTIFY runningtime2)
+    Q_PROPERTY(int testValue READ testValue WRITE setTestValue NOTIFY testvalue)
 
 public:
     explicit MachineTwo(QObject *parent = nullptr);
@@ -24,11 +25,16 @@ public:
     double runtime();
     void setRuntime(QVariant data);
 
+    // Getter/Setter : m_test_value
+    int testValue();
+    void setTestValue(QVariant data);
+
 
 signals:
     // Q_PROPERTY SIGNALS
     void progress2();
     void runningtime2();
+    void testvalue();
 
     void started2();
     void stopped2();
@@ -50,6 +56,8 @@ private:
     double m_runtime;
 
     double const m_timerInterval = 1000.0;
+
+    int m_test_value = 0;
 
 };
 

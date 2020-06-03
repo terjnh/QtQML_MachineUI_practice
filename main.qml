@@ -319,6 +319,26 @@ Window {
         onRunningtime2: {
             lblRunTime2.text = "Total Run-Time: " + (Math.round(machineTwo.runtime2 * 100) / 100) + " s"
         }
+    }
+
+
+    // Use this button to pass data back to C++ class (machinetwo.cpp)
+    Button {
+        id: btnCpp
+        x: 270
+        y: 459
+        text: qsTr("to C++ !")
+        onClicked: {
+            machineTwo.testValue = 999;
+            console.log("Sent data back to C++ class - machinetwo.cpp");
+        }
+    }
+
+    Label {
+        id: label
+        x: 90
+        y: 471
+        text: qsTr("Pass Data back to C++ >>")
     }  // MachineTwo (id: machineTwo)
 
 }

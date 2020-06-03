@@ -51,7 +51,7 @@ private:
     double m_runtime;
 
     // Modify Timer Interval here (Time it takes to complete 1% of progressbar)
-    double const m_timerInterval = 500.0;
+    double const m_timerInterval = 100.0;
 
 };
 

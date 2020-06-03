@@ -4,6 +4,7 @@ MachineTwo::MachineTwo(QObject *parent) : QObject(parent)
 {
     m_timer.setInterval(m_timerInterval);
     connect(&m_timer, &QTimer::timeout, this, &MachineTwo::timeout);
+    qInfo() << "Original m_test_value: " << m_test_value;
 }
 
 int MachineTwo::value()
@@ -32,12 +33,30 @@ void MachineTwo::setRuntime(QVariant data)
     emit runningtime2();
 }
 
+// test value (QML -> C++)
+int MachineTwo::testValue()
+{
+    qInfo() << "Reading m_test_value";
+    return m_test_value;
+}
+
+// test value (QML -> C++)
+void MachineTwo::setTestValue(QVariant data)
+{
+    qInfo() << "Setting test value (M2)";
+    m_test_value = data.toInt();
+    // emit testvalue();
+}
+
 void MachineTwo::start2()
 {
+    // Test data printout which was sent from main.qml
+    qInfo() << "m_test_value from main.qml: " << m_test_value;
+
     setValue(0);
     setRuntime(0.0);
     m_timer.start();
-    emit started2();
+    emit started2();  
 }
 
 void MachineTwo::stop2()
