@@ -16,7 +16,7 @@ Window {
     width: 640
     height: 480
     color: "#d9d5d5"
-    title: qsTr("Hello World")
+    title: qsTr("Machine Template")
 
     Component.onCompleted: {
         progressBar.value = 0
@@ -139,39 +139,37 @@ Window {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
 
-            Button {
+            CustomBtn1 {
                 id: startBtn
-                width: 120
-                height: 60
+                icon.source: "qrc:/images/images/start.png"
                 text: qsTr("Start")
-                anchors.verticalCenter: parent.verticalCenter
                 onClicked: machineOne.start();
             }
 
-            Button {
+            CustomBtn1 {
                 id: stopBtn
-                width: 120
-                height: 60
-                text: qsTr("Stop")
-                anchors.verticalCenter: parent.verticalCenter
+                icon.width: 30; icon.height: 30
+                icon.source: "qrc:/images/images/stop.png"
+                text: qsTr("  Stop")
                 onClicked: machineOne.stop();
             }
 
-            Button {
+            CustomBtn1 {
                 id: pauseBtn
-                width: 120
-                height: 60
+                icon.width: 45; icon.height: 45
+                icon.source: "qrc:/images/images/pause.jpg"
                 text: qsTr("Pause")
-                anchors.verticalCenter: parent.verticalCenter
                 onClicked: machineOne.pause();
+
+                background: Rectangle{
+                    color: '#f6f6f6'
+                }
             }
 
-            Button {
+            CustomBtn1 {
                 id: resumeBtn
-                width: 120
-                height: 60
+                icon.source: ""
                 text: qsTr("Resume")
-                anchors.verticalCenter: parent.verticalCenter
                 onClicked: machineOne.resume();
             }
         }

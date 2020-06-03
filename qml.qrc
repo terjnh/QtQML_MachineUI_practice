@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>CustomBtn1.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/start.png</file>
+        <file>images/pause.jpg</file>
+        <file>images/stop.png</file>
     </qresource>
 </RCC>
