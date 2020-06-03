@@ -75,14 +75,6 @@ Window {
 
             ProgBar { id: progressBar }
 
-//            ProgressBar {
-//                id: progressBar
-//                width: 540
-//                height: parent.height
-//                anchors.bottom: parent.bottom
-//                anchors.bottomMargin: 20
-//                value: 0.5
-//            }
         }  // Row (id: row1b)
 
         Row {
