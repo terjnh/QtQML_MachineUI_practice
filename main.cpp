@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "machineone.h"
+#include "machinetwo.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
 
     // Register C++ class with QML
     qmlRegisterType<MachineOne>("com.company.machineone", 1, 0, "MachineOne");
+    qmlRegisterType<MachineTwo>("com.company.machinetwo", 1, 0, "MachineTwo");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

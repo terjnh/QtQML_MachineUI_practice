@@ -49,7 +49,7 @@ private:
     int m_value;
     double m_runtime;
 
-    double const m_timerInterval = 500.0;
+    double const m_timerInterval = 1000.0;
 
 };
 

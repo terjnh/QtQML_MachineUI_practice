@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
 
 import com.company.machineone 1.0
+import com.company.machinetwo 1.0
 
 /*
   Further practice from Section 11:
@@ -19,13 +20,21 @@ Window {
     title: qsTr("Machine Template")
 
     Component.onCompleted: {
-        progressBar.value = 0
+        progressBar1.value = 0
+        progressBar2.value = 0
+
         startBtn.enabled = true
         stopBtn.enabled = false
         pauseBtn.enabled = false
         resumeBtn.enabled = false
 
-        console.log("Progress: " + progressBar.value)
+        startBtn2.enabled = true
+        stopBtn2.enabled = false
+        pauseBtn2.enabled = false
+        resumeBtn2.enabled = false
+
+        console.log("Progress (M1): " + progressBar1.value)
+        console.log("Progress (M2): " + progressBar2.value)
     }
 
     Column {
@@ -73,7 +82,7 @@ Window {
             height: 40
             anchors.verticalCenter: parent.verticalCenter
 
-            ProgBar { id: progressBar }
+            ProgBar { id: progressBar1 }
 
         }  // Row (id: row1b)
 
@@ -140,7 +149,7 @@ Window {
             pauseBtn.enabled = false
             resumeBtn.enabled = false
             lblStatus1.text = "Stopped!"
-            progressbar.value = 0.0
+            progressbar1.value = 0.0
         }
 
         onPaused: {
@@ -161,7 +170,7 @@ Window {
 
         onProgress: {
             lblStatus1.text = "Progress: " + machineOne.workload + "%"
-            progressBar.value = (machineOne.workload * 0.01)
+            progressBar1.value = (machineOne.workload * 0.01)
         }
 
         onRunningtime: {
@@ -217,6 +226,7 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
 
             ProgBar { id: progressBar2 }
+
         }  // Row (id: row2b)
 
         Row {
@@ -231,7 +241,7 @@ Window {
                 id: startBtn2
                 icon.source: "qrc:/images/images/start.png"
                 text: qsTr("Start")
-                onClicked: {} // TODO
+                onClicked: machineTwo.start2();
             }
 
             CustomBtn1 {
@@ -239,7 +249,7 @@ Window {
                 icon.width: 30; icon.height: 30
                 icon.source: "qrc:/images/images/stop.png"
                 text: qsTr("  Stop")
-                onClicked: {} // TODO
+                onClicked: machineTwo.stop2();
             }
 
             CustomBtn1 {
@@ -247,7 +257,7 @@ Window {
                 icon.width: 45; icon.height: 45
                 icon.source: "qrc:/images/images/pause.jpg"
                 text: qsTr("Pause")
-                onClicked: {}  // TODO
+                onClicked: machineTwo.pause2();
 
                 background: Rectangle{
                     color: '#f6f6f6'
@@ -258,11 +268,58 @@ Window {
                 id: resumeBtn2
                 icon.source: ""
                 text: qsTr("Resume")
-                onClicked: {}  // TODO
+                onClicked: machineTwo.resume2();
             }
         }  // Row (id: row2c)
 
     }  // Column (id: column2)
+
+
+    MachineTwo {
+        id: machineTwo
+
+        onStarted2: {
+            startBtn2.enabled = false
+            stopBtn2.enabled = true
+            pauseBtn2.enabled = true
+            resumeBtn2.enabled = false
+            lblStatus2.text = "Started..."
+        }
+
+        onStopped2: {
+            startBtn2.enabled = true
+            stopBtn2.enabled = false
+            pauseBtn2.enabled = false
+            resumeBtn2.enabled = false
+            lblStatus2.text = "Stopped!"
+            progressbar2.value = 0.0
+        }
+
+        onPaused2: {
+            startBtn2.enabled = false
+            stopBtn2.enabled = true
+            pauseBtn2.enabled = false
+            resumeBtn2.enabled = true
+            lblStatus2.text = "Paused..."
+        }
+
+        onResumed2: {
+            startBtn2.enabled = false
+            stopBtn2.enabled = true
+            pauseBtn2.enabled = true
+            resumeBtn2.enabled = false
+            lblStatus2.text = "Resumed"
+        }
+
+        onProgress2: {
+            lblStatus2.text = "Progress: " + machineTwo.workload2 + "%"
+            progressBar2.value = (machineTwo.workload2 * 0.01)
+        }
+
+        onRunningtime2: {
+            lblRunTime2.text = "Total Run-Time: " + (Math.round(machineTwo.runtime2 * 100) / 100) + " s"
+        }
+    }  // MachineTwo (id: machineTwo)
 
 }
 

@@ -3,7 +3,7 @@
 MachineTwo::MachineTwo(QObject *parent) : QObject(parent)
 {
     m_timer.setInterval(m_timerInterval);
-    connect(&m_timer, &QTimer::timeout, this, &MachineOne::timeout);
+    connect(&m_timer, &QTimer::timeout, this, &MachineTwo::timeout);
 }
 
 int MachineTwo::value()
@@ -65,5 +65,5 @@ void MachineTwo::timeout()
     m_runtime = m_runtime + (m_timerInterval / 1000.0);
     emit runningtime2();
 
-    if(m_value > 99) stop();
+    if(m_value > 99) stop2();
 }
